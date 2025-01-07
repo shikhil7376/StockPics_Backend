@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import { connectToDatabase } from "./config/connectDb";
 import userRouter from './routes/userRoute'
-import AppError from "./utils/appError";
+import { errorHandle } from "./middleware/errorHandle";
 
 dotenv.config()
 
@@ -19,11 +19,7 @@ app.use(express.urlencoded({limit:'50mb',extended:true}))
 app.use(cors(corsOption))
 
 app.use('/api/user',userRouter)
-
-app.use((err:AppError,req:Request,res:Response,next:NextFunction)=>{
-    console.error(err);
-    res.status(err.statusCode || 500).json({message:err.message})
-})
+app.use(errorHandle)
 
 const PORT = process.env.PORT ||3000
 const startServer = async():Promise<void>=>{
