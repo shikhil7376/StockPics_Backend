@@ -1,7 +1,9 @@
-import {Schema,model } from 'mongoose'
+import {Schema,model} from 'mongoose'
 import bcrypt from 'bcrypt'
+import { IUser } from '../types/modelTypes'
 
-const userSchema = new Schema({
+
+const userSchema = new Schema<IUser>({
     name:{
         type:String,
         required:true,
@@ -23,8 +25,6 @@ const userSchema = new Schema({
     }
 },{timestamps:true})
 
-const User = model('User',userSchema)
-
 userSchema.pre("save",async function (next){
     if(!this.isModified("password")){
         next()
@@ -32,5 +32,7 @@ userSchema.pre("save",async function (next){
     this.password = await bcrypt.hash(this.password,10)
     next()
 })
+
+const User = model<IUser>('User',userSchema)
 
 export default User
