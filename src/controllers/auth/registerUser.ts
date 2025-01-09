@@ -13,9 +13,9 @@ import { StatusCodes } from "http-status-codes";
 const SALT_ROUNDS = 10;
 
 export const registerUser = asyncErrorHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
+  async (req: Request, res: Response, next: NextFunction) => {      
+    const { name,email, password } = req.body;
+    if (!email || !password|| !name) {
       throw new BadRequestError("All details are necessary");
     }
 
@@ -37,6 +37,6 @@ export const registerUser = asyncErrorHandler(
 
     await sendMail(user.email,code)
 
-    return res.status(StatusCodes.CREATED).json({success:true,messsage:"Verification mail sent"})
+    return res.status(StatusCodes.CREATED).json({success:true,message:"Verification mail sent"})
   }
 );
