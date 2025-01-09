@@ -9,7 +9,7 @@ import { StatusCodes } from "http-status-codes";
 
 export const resendOtp = asyncErrorHandler(
   async(req:Request,res:Response,next:NextFunction)=>{
-     const {email}:{email:string}  = req.body
+     const {email}:{email:string}  = req.body 
      if(!email){
         throw new BadRequestError("email is required")
      }    
