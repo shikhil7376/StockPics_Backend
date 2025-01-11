@@ -11,5 +11,4 @@ router.patch('/verify',(req,res,next)=>verifyUser(req,res,next))
 router.patch('/resend',(req,res,next)=>resendOtp(req,res,next))
 router.post('/login',(req,res,next)=>loginUser(req,res,next))
 
-
 export default router

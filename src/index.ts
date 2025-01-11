@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectToDatabase } from "./config/connectDb";
 import userRouter from "./routes/userRoute";
+import projectRouter from './routes/projectRoutes'
 import { errorHandle } from "./middleware/errorHandle";
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors(corsOption));
 
 app.use("/api/user", userRouter);
+app.use('/api/project',projectRouter)
 
 app.use(errorHandle);
 

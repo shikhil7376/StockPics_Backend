@@ -7,7 +7,7 @@ const imageSchema = new Schema({
       required: true, 
       trim: true, 
     },
-    imageUrl: {
+    url: {
       type: String,
       required: true, 
       trim: true, 
@@ -20,6 +20,6 @@ const imageSchema = new Schema({
   }, { timestamps: true });
   
   // Create and export the Image model
-  const Image = model('Image', imageSchema);
+  const ImageModel = model('Image', imageSchema);
   
-  export default Image;
+  export default ImageModel;

@@ -13,5 +13,6 @@ export interface IUser extends Document{
     password:string;
     isVerified:boolean;
     createAt:Date;
-    updatedAt:Date
+    updatedAt:Date;
+    phone:string;
 }
