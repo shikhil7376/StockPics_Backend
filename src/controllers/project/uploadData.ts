@@ -23,6 +23,8 @@ export const uploadImage = asyncErrorHandler(
               userId: img.userid,
             }))
           );
+        //   const fetchData = await ImageModel.find()
+
           return res.status(StatusCodes.CREATED).json({
             message: "Images uploaded successfully.",
             data: savedImages,
