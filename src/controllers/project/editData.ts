@@ -7,8 +7,6 @@ import { StatusCodes } from "http-status-codes";
 
 export const editData = asyncErrorHandler(
     async(req:Request,res:Response,next:NextFunction)=>{ 
-        console.log('editzzz');
-        
         const { description, url ,id,userid} = req.body; 
         if (!id) {
             throw new BadRequestError("user id is required")
