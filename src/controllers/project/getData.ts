@@ -10,7 +10,7 @@ export const getData = asyncErrorHandler(
          if(!userid){
             throw new BadRequestError("user is not found")
          }
-          const details = await ImageModel.find({userId:userid})
+         const details = await ImageModel.find({ userId: userid }).sort({ order: 1 });
           const data = details.map((detail) => ({
             id: detail._id,
             description: detail.description,
