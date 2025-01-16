@@ -9,7 +9,7 @@ export async function generateJwtToken(id: string) {
       );
     }
     const payload = {
-      id: id,
+      user_id: id,
       exp: Math.floor(Date.now() / 1000) + 12121,
       iat: Math.floor(Date.now() / 1000),
     };

@@ -25,7 +25,9 @@ export const loginUser = asyncErrorHandler(
         if(!loggedUser.isVerified){
             throw new UserUnauthorizedError("you are not verified,Please Verify...")
         }
-        let token = await generateJwtToken(loggedUser._id as string)
+        let token = await generateJwtToken(loggedUser._id as any)
+        console.log('token',token);
+        
         let userData ={
             _id:loggedUser._id,
             name:loggedUser.name,

@@ -6,11 +6,17 @@ import { StatusCodes } from "http-status-codes";
 
 export const deleteData = asyncErrorHandler(
     async(req:Request,res:Response,next:NextFunction)=>{
-     const { id, userid } = req.params       
-     if(!id || !userid){
+
+      if (!req.user) {
+         throw new BadRequestError("User is not authenticated");
+       }
+       const{user_id} = req.user
+
+     const { id } = req.params       
+     if(!id || !user_id){
         throw new BadRequestError("userid and id are required!!")
      }
-   const deleteData = await ImageModel.deleteOne({_id:id,userId:userid})
+   const deleteData = await ImageModel.deleteOne({_id:id,userId:user_id})
      if(!deleteData.deletedCount){
         throw new ProjectNotFoundError("Item not found or already deleted")
      }        
