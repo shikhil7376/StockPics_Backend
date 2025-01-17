@@ -9,14 +9,17 @@ import { StatusCodes } from "http-status-codes";
 
 export const loginUser = asyncErrorHandler(
     async(req:Request,res:Response,next:NextFunction)=>{
-
+       
         const {email,password}:{email:string,password:string} = req.body 
+
+        console.log('dey dey');
+        
          if(!email || !password){
             throw new BadRequestError("Email and password is required")
          }
          const loggedUser = await User.findOne({email})
          if(!loggedUser){
-            throw new UserUnauthorizedError("Invalid credential")
+            throw new UserUnauthorizedError("Email not found,Please signUp!!!")
          }
          const comparePassword = await bcrypt.compare(password,loggedUser.password)
          if(!comparePassword){

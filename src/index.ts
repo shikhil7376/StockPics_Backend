@@ -9,6 +9,7 @@ import { errorHandle } from "./middleware/errorHandle";
 dotenv.config();
 
 const app: Express = express();
+ 
 const corsOption = {
   origin: process.env.CORS,
   method: "GET,HEAD,PUT,PATCH,POST,DELETE",

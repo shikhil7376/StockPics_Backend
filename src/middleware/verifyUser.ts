@@ -27,7 +27,6 @@ export async function verifyUser(req:Request,res:Response,next:NextFunction){
             throw new UserUnauthorizedError("Token not provided")
         }
         const decodedToken = jwt.verify(token.slice(7),process.env.JWT_SECRET_KEY as string) as UserPayload
-        console.log('decodedZZZ',decodedToken);
         
         // const objectId = new mongoose.Types.ObjectId(decodedToken.id);
         // const userData = await User.findById(objectId);
